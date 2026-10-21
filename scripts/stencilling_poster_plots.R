@@ -1,6 +1,8 @@
-##-------------------------------------------------------------------------------------
-## Stencilling data SC stage analysis: EMBL poster
-##-------------------------------------------------------------------------------------
+##-----------------------------------------------------------------------------------------------------------------
+## Understanding changes in 5mC DNA methylation at MER11s upon the loss of ZNF808
+## Script to generate plots used for the poster:
+## Dissecting ZNF808 and MER11 elements during pancreatic development using targeted chromatin stencilling
+##-----------------------------------------------------------------------------------------------------------------
 
 ## libraries
   library(tidyverse)
@@ -16,24 +18,25 @@
   library(sparseMatrixStats)
 
 ## function
-  source("Function_DA_peak_gene_PE.R")
-  source("Function_Overlaps_Output_Bed.R")
-  source("../../R_Projects/Functions/Function_Find_Overlaps.R")
-  source("../../R_Projects/Functions/Function_Find_overlaps_against_reference.R")
-  source("Function_smg_mods_volcano_plots.R")
-  source("Function_smg_labelled_volcano.R")
-  source("Function_smg_FDR_correction.R")
-  source("Function_filter_sig_and_plot.R")
-  source("../smg_functions/Function_add_Mod_Rate.R")
+  source("functions/bed_overlaps.R")
+  source("functions/multiple_bed_overlaps.R")
+  source("functions/multi_overlaps_with_reference.R")
+  source("functions/smg_volcano_plot.R")
+  source("functions/smg_labeleld_volcano_plot.R")
+  source("functions/smg_FDR_correction.R")
+  source("functions/add_modification_rate.R")
+  source("functions/filter_sig_and_plot.R")
 
   set.seed(1234)
 
-## laoding mer11 files:
-  all_mer11 <- read.delim("../../R_Projects/hg38_data/all_mer11_hg38.bed", header = FALSE)
+## loading MER11 BED file:
+  # all MER11
+  all_mer11 <- read.delim("data/all_mer11_hg38.bed", header = FALSE)
   chr_names <- c(paste0("chr", 1:22), "chrX", "chrY")
   all_mer11 <- all_mer11[all_mer11$V1 %in%chr_names,]
   
-  mer11_220 <- read.delim("../../R_Projects/hg38_data/mer11_220_clusters.hg19lohg38.bed", header = FALSE)
+  # A subset of 220 MER11 that lost H3K9me3 and gained H3K27ac in KO
+  mer11_220 <- read.delim("data/mer11_220_clusters.hg19lohg38.bed", header = FALSE)
   mer11_220 <- mer11_220[,1:3]
 
 # mer11_220 overlap
@@ -41,10 +44,10 @@
                                 bed.2 = mer11_220,
                                 names = c("mer11", "mer11_220"))
   
-## laoding the DA peaks from SMGstats:
-  mods_df <- read.delim("znf808_diff_access_with_mods_CORRECTED.tsv", sep = "\t") 
+## loading the DA peaks from SMGstats:
+  mods_df <- read.delim("data/znf808_diff_access_with_mods_CORRECTED.tsv", sep = "\t") 
   
-## annotating the peaks as mer11/non-mer11
+## annotating the DA peaks as mer11/non-mer11
   peaks_mer11 <- bed_overlaps(bed.1 = mods_df[,1:3],
                               bed.2 = all_mer11,
                               names = c("peaks", "mer11"))
@@ -52,7 +55,7 @@
   peaks_mer11 <- left_join(peaks_mer11, mer11_overlap, by = "mer11")
   peaks_mer11_220 <- peaks_mer11[!is.na(peaks_mer11$mer11_220),]
   
-## annotating the peaks as mer11
+## annotating the main DA peaks data frame if it's mer11 or not
   mods_df <- mods_df %>%
     mutate(peak= paste(chrom, start, stop, sep = "-"),
            is_mer11= peak %in% peaks_mer11$peaks,
@@ -61,17 +64,17 @@
                                is_mer11 ~ "mer11", 
                                .default = "non_mer11"))
 
-  
 ## volcano plots:
-  ## All mods and fire
+  # All modifacations and FIRE
   all_volcano <- diff_peaks_mods_plots(file = mods_df)
   all_volcano +
     plot_annotation(title = "Volcano plots for all mods and FIRE",
                     theme = theme(plot.title = element_text(face = "bold", hjust = 0.5, size = 16)))
   
   
-## FDR correction: BH for modifications and D-FDR for FIRE
-  mods_df <- diff_peaks_fdr_corr(mods_df, discrete_fdr = TRUE)
+## FDR correction: Benjamini Hochberg for 5mC/6mA/5hmC modifications and Discrete-FDR for FIRE
+  mods_df <- diff_peaks_fdr_corr(mods_df, 
+                                 discrete_fdr = TRUE)
   
 ## volcano plots with corrected p values:
   fdr_correted <- diff_peaks_mods_plots(file = mods_df,
