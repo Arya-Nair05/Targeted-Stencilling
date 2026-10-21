@@ -18,4 +18,4 @@ Through this targeted approach we get a \>100x read depth (combining WGS and AS)
 
 ## Analysis:
 
-All the pre-processing of the files were done using [FIBERTOOLS](https://fiberseq.github.io/fibertools/fibertools.html). For further processing, including finding the differentially accessible and methylated region [SMGstats](https://github.com/exetergrdd/SMGStats.jl/tree/main), an in-house developed package was used.
+All the pre-processing of the files were done using [FIBERTOOLS](https://fiberseq.github.io/fibertools/fibertools.html) and the [EPI2ME pipeline](https://epi2me.nanoporetech.com/epi2me-docs/workflows/wf-human-variation/) by ONT. For further processing, including finding the differentially accessible and methylated region [SMGStats](https://github.com/exetergrdd/SMGStats.jl/tree/main), an in-house developed package was used.
