@@ -12,10 +12,10 @@ ZNF808 is a primate specific transcription factor that functions by binding to a
 
 ## Targeted Stencilling: Stencilling + Oxford Nanopore's Adaptive Sampling:
 
-To understand how the chromatin accessibility and DNA methylation at the MER11 elements change in the absence of ZNF808 we performed targeted stencilling. This was done by using Oxford Nanopore's (ONT) Adaptive Sampling (AS) technology that selectively enriches for reads mapping to the MER11 elements.
+To understand how the chromatin accessibility and DNA methylation at the MER11 elements change in the absence of ZNF808 we performed targeted stencilling. This was done by using [Oxford Nanopore's (ONT) Adaptive Sampling (AS)](https://nanoporetech.com/document/adaptive-sampling) technology that selectively enriches for reads mapping to the MER11 elements.
 
 Through this targeted approach we get a \>100x read depth (combining WGS and AS) at the MER11 elements that allows us to understand the epigenetic states at a single molecule resolution. The increased coverage also allows the reads to be phased enabling us to resolve haplotype-specific patterns of regulation.
 
 ## Analysis:
 
-For
+All the pre-processing of the files were done using [FIBERTOOLS](https://fiberseq.github.io/fibertools/fibertools.html). For further processing, including finding the differentially accessible and methylated region [SMGstats](https://github.com/exetergrdd/SMGStats.jl/tree/main), an in-house developed package was used.
