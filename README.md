@@ -18,4 +18,10 @@ Through this targeted approach we get a \>100x read depth (combining WGS and AS)
 
 ## Analysis:
 
-All the pre-processing of the files were done using [FIBERTOOLS](https://fiberseq.github.io/fibertools/fibertools.html) and the [EPI2ME pipeline](https://epi2me.nanoporetech.com/epi2me-docs/workflows/wf-human-variation/) by ONT. For further processing, including finding the differentially accessible and methylated region [SMGStats](https://github.com/exetergrdd/SMGStats.jl/tree/main), an in-house developed package was used.
+All the pre-processing of the files were done using [FIBERTOOLS](https://fiberseq.github.io/fibertools/fibertools.html) and the [EPI2ME pipeline](https://epi2me.nanoporetech.com/epi2me-docs/workflows/wf-human-variation/) by ONT. For further processing, including finding the differentially accessible and methylated regions [SMGStats](https://github.com/exetergrdd/SMGStats.jl/tree/main), an in-house developed package was used. For plotting the reads along with the linker, nucleosome and FIRE labelling, [SMGDataPlotting](https://github.com/exetergrdd/SMGDataPlotting.jl) package was used.
+
+-   `data`: This folder has all the data required to perform the downstream analysis.
+
+-   `functions`: This folder has all the functions used for running the script
+
+-   `scripts`: This folder contains a markdown script along with the outputs and the plots
