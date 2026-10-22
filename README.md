@@ -6,11 +6,11 @@ This repo contains the scripts used for analysing the results from targeted chro
 
 ZNF808 is a primate specific transcription factor that functions by binding to and repressing a specific class of transposable elements called the MER11 elements. Loss of ZNF808 causes pancreatic agenesis, a rare developmental disorder in which the pancreas fails to develop. When ZNF808 is lost, the MER11 elements which have the potential to act as an enhancer, are no longer repressed, and therefore gains accessibility, causing aberrant gene activation. In vitro stem cell studies have shown higher expression of liver like gene expression in the ZNF808 KO cell lines during pancreatic differentiation.
 
-## Stencilling/Fiber-seq:
+## Stencilling/Fiber-seq
 
 [Fiber-seq](https://www.science.org/doi/10.1126/science.aaz1646) also known as stencilling, is a long-read sequencing based assay that simultaneously profiles chromatin accessibility, DNA methylation, nucleosome positioning and transcription factor footprints at a single molecule resolution.
 
-## Targeted Stencilling: Stencilling + Oxford Nanopore's Adaptive Sampling:
+## Targeted Stencilling: Stencilling + ONT's Adaptive Sampling
 
 To understand how the chromatin accessibility and DNA methylation at the MER11 elements change in the absence of ZNF808 we performed targeted stencilling. This was done by using [Oxford Nanopore's (ONT) Adaptive Sampling (AS)](https://nanoporetech.com/document/adaptive-sampling) technology that selectively enriches for reads mapping to the MER11 elements.
 
