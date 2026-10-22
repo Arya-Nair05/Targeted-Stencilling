@@ -30,23 +30,23 @@ All the pre-processing of the files were done using [FIBERTOOLS](https://fiberse
 
 ## Results:
 
-Over 60% of the MER11s showing gain of accessibility show a significant loss of 5mC methylation (183 out of 288). Interestingly 136 of these MER11s have been previously shown to also lose repressive H3K9me3 and gain activating H3K27ac in the ZNF808 KO. \
+Over 60% of the MER11s showing gain of accessibility show a significant loss of 5mC methylation (183 out of 288). Interestingly 136 of these MER11s have been previously shown to also lose repressive H3K9me3 and gain activating H3K27ac in the ZNF808 KO.\
 \
 Targeted stencilling also allows identifying regions showing haplotype specific patterns of epigenetic states. For example MER11 at the locus: `chr14:88765869-88766924`
 
 1.  This MER11 is \~120kb away from the gene *EML5* that is upreglated in the KO.
 
-    ![EML5 expression](images/eml5_exp.jpeg){width="314"}
+    ![EML5 expression](images/eml5_exp.jpeg){width="238"}
 
 2.  It also shows a significant gain of accessibility and a loss of 5mC methylation. However this loss of methylation is haplotype specific. Both the alleles in the WT are methylated whereas only one of the allele loses methylation at these sites in the KO
 
-    ![IGV tracks showing haplotype specific loss of 5mC](images/Screenshot 2026-10-22 at 11.24.37.png)
+    ![IGV tracks showing haplotype specific loss of 5mC](images/Screenshot%202026-10-22%20at%2011.24.37.png)
 
 3.  Additionally we found 2 haplotype specific variants:\
     `chr14:88766509 T>Cchr14:88766553 G>T`
 
     We tested if the presence of these variants had an impact on transcription factor binding using the [MotifScanner](https://github.com/exetergrdd/MotifScanner.jl) package. The presence of the `C` variant found on the allele retaining methylation in the KO, showed an increased binding potential for transcription factors such as E2F6 and TFDP, which are known repressors that initiate DNA methylation.
 
-    ![](images/Screenshot 2026-10-22 at 12.53.10.png){width="304"}
+    ![](images/Screenshot%202026-10-22%20at%2012.53.10.png){width="304"}
 
-    ![](images/Screenshot 2026-10-22 at 12.50.44.png){width="206"}![](images/Screenshot 2026-10-22 at 12.54.41.png){width="194"}
+    ![](images/Screenshot%202026-10-22%20at%2012.50.44.png){width="206"}![](images/Screenshot%202026-10-22%20at%2012.54.41.png){width="194"}
